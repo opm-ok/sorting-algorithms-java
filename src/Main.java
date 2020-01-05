@@ -19,32 +19,13 @@ public class Main {
         }
     }
 
-    // Shell Sort
-//    private static int[] shellSort(int[] intArray){
-//        // Variation of Insertion sort
-//        // In-place algorithm
-//        // O(n2) worst case, but it can perform much better than that (depends on the gap)
-//        // Unstable algorithm
-//
-//        for (int gap = intArray.length / 2; gap > 0; gap /= 2) {
-//
-//            for (int i = gap; i < intArray.length ; i++) {
-//                int checkElement = intArray[i];
-//
-//                int j = i;
-//
-//                while (j >= gap && intArray[j - gap] > checkElement){
-//                    intArray[j] = intArray[j - gap];
-//                    j -= gap;
-//                }
-//                intArray[j] = checkElement;
-//            }
-//        }
-//        return intArray;
-//    }
 
     // Shell Sort
     private static int[] shellSort(int[] intArray){
+        // Variation of Insertion sort
+        // In-place algorithm
+        // O(n2) worst case, but it can perform much better than that (depends on the gap)
+        // Unstable algorithm
 
         for (int gap = intArray.length / 2; gap > 0; gap /= 2){
 
