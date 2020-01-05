@@ -9,17 +9,6 @@ public class Main {
         System.out.println(Arrays.toString(shellSort(intArray)));
     }
 
-    // Swap 2 integers in an array
-    private static void swap(int[] arr, int i, int j){
-
-        if (i != j) {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-    }
-
-
     // Shell Sort
     private static int[] shellSort(int[] intArray){
         // Variation of Insertion sort
@@ -36,7 +25,7 @@ public class Main {
 
                 while (j >= gap && intArray[j - gap] > selectedElement){
                     intArray[j] = intArray[j - gap];
-                    j -= gap;
+                    j-= gap;
                 }
                 intArray[j] = selectedElement;
             }
@@ -107,11 +96,19 @@ public class Main {
         return intArray;
     }
 
-} // end of Main
+    // Swap 2 integers in an array
+    private static void swap(int[] arr, int i, int j){
+
+        if (i != j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
 
 
 // Stable vs unstable
-
     // Stable - maintains the relative ordering of two duplicate items
     // Unstable - does not maintain the relative ordering of two duplicate items
 
