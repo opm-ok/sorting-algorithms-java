@@ -6,10 +6,12 @@ public class Main {
 
         int[] intArray = {20, 35, -15, 7, 55, 1, -22}; // indexes: 6
 
-        System.out.println(Arrays.toString(shellSort(intArray)));
         System.out.println(Arrays.toString(mergeSort(intArray, 0, intArray.length)));
+        System.out.println(Arrays.toString(shellSort(intArray)));
+        System.out.println(Arrays.toString(insertionSort(intArray)));
+        System.out.println(Arrays.toString(selectionSort(intArray)));
+        System.out.println(Arrays.toString(bubbleSort(intArray)));
     }
-
 
 
     // Merge Sort
@@ -17,19 +19,20 @@ public class Main {
         // start - beginning of array
         // end - length of array (end - 1 = last index of array)
 
-        // e.g. no work required on an array of length 1
         // base case
         if (end - start < 2){
             return intArray;
         }
 
+        // split array
         int mid = (start + end) / 2;
 
-        mergeSort(intArray, start, mid);
-        mergeSort(intArray, mid, end);
-        merge(intArray, start, mid, end);
+        mergeSort(intArray, start, mid); // left array
+        mergeSort(intArray, mid, end); // right array
+        merge(intArray, start, mid, end); // merge sorted left and right arrays
 
         return intArray;
+
     }
 
     private static int[] merge(int[] intArray, int start, int mid, int end){
@@ -48,14 +51,17 @@ public class Main {
             tempArray[tempIndex++] = intArray[i] <= intArray[j] ?  intArray[i++] : intArray[j++];
         }
 
-        // The right array has been merged to the intArray, however, the left array still has elements remaining
-        if (j >= end && i < mid){
-            for (int k = i; k < mid; k++) {
-                tempArray[tempIndex++] = intArray[k];
-            }
-        }
+        // Outcomes:
+        // 1) Right array has remaining elements to be sorted --> Do nothing
+        // 2) Left array has remaining elements to be sorted --> Copy to end of array
 
-        System.arraycopy(tempArray, 0, intArray, 0, tempArray.length);
+
+        // If elements are still remaining on the left array copy to the end of the array
+        // [mid - i] will be zero if we completely traversed the left array
+        System.arraycopy(intArray, i, intArray, start + tempIndex, mid - i);
+
+        // Copy over the tempArray to intArray
+        System.arraycopy(tempArray, 0, intArray, start, tempIndex);
 
         return intArray;
     }
