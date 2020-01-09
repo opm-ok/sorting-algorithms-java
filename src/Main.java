@@ -32,12 +32,10 @@ public class Main {
         merge(intArray, start, mid, end); // merge sorted left and right arrays
 
         return intArray;
-
     }
-
     private static int[] merge(int[] intArray, int start, int mid, int end){
 
-        // Do nothing if the int at the start of right array is larger than end of left array (no need to sort)
+        // Do nothing if the value at the start of the right array is larger than the value at end of left array
         if (intArray[mid - 1] <= intArray[mid]){
             return intArray;
         }
@@ -55,14 +53,12 @@ public class Main {
         // 1) Right array has remaining elements to be sorted --> Do nothing
         // 2) Left array has remaining elements to be sorted --> Copy to end of array
 
-
         // If elements are still remaining on the left array copy to the end of the array
         // [mid - i] will be zero if we completely traversed the left array
         System.arraycopy(intArray, i, intArray, start + tempIndex, mid - i);
 
         // Copy over the tempArray to intArray
         System.arraycopy(tempArray, 0, intArray, start, tempIndex);
-
         return intArray;
     }
 
