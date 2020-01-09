@@ -4,9 +4,60 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] intArray = {20, 35, -15, 7, 55, 1, -22 }; // indexes: 6
+        int[] intArray = {20, 35, -15, 7, 55, 1, -22}; // indexes: 6
 
         System.out.println(Arrays.toString(shellSort(intArray)));
+        System.out.println(Arrays.toString(mergeSort(intArray, 0, intArray.length)));
+    }
+
+
+
+    // Merge Sort
+    private static int[] mergeSort(int[] intArray, int start, int end){
+        // start - beginning of array
+        // end - length of array (end - 1 = last index of array)
+
+        // e.g. no work required on an array of length 1
+        // base case
+        if (end - start < 2){
+            return intArray;
+        }
+
+        int mid = (start + end) / 2;
+
+        mergeSort(intArray, start, mid);
+        mergeSort(intArray, mid, end);
+        merge(intArray, start, mid, end);
+
+        return intArray;
+    }
+
+    private static int[] merge(int[] intArray, int start, int mid, int end){
+
+        // Do nothing if the int at the start of right array is larger than end of left array (no need to sort)
+        if (intArray[mid - 1] <= intArray[mid]){
+            return intArray;
+        }
+
+        int i = start;
+        int j = mid;
+        int tempIndex = 0;
+        int[] tempArray = new int[end - start];
+
+        while (i < mid && j < end){
+            tempArray[tempIndex++] = intArray[i] <= intArray[j] ?  intArray[i++] : intArray[j++];
+        }
+
+        // The right array has been merged to the intArray, however, the left array still has elements remaining
+        if (j >= end && i < mid){
+            for (int k = i; k < mid; k++) {
+                tempArray[tempIndex++] = intArray[k];
+            }
+        }
+
+        System.arraycopy(tempArray, 0, intArray, 0, tempArray.length);
+
+        return intArray;
     }
 
     // Shell Sort
@@ -116,7 +167,5 @@ public class Main {
     // positioning relative to each other.
 
     // Stable is preferable to an unstable sort (It can make a difference when sorting objects)
-
-
 
 
