@@ -6,6 +6,7 @@ public class Main {
 
         int[] intArray = {20, 35, -15, 7, 55, 1, -22}; // indexes: 6
 
+        System.out.println(Arrays.toString(quickSort(intArray, 0, intArray.length)));
         System.out.println(Arrays.toString(mergeSort(intArray, 0, intArray.length)));
         System.out.println(Arrays.toString(shellSort(intArray)));
         System.out.println(Arrays.toString(insertionSort(intArray)));
@@ -13,9 +14,46 @@ public class Main {
         System.out.println(Arrays.toString(bubbleSort(intArray)));
     }
 
+    // Quick Sort
+    private static int[] quickSort(int[] intArray, int start, int end){
+        // O(nLog n) average time, worst case can be n2 (quadratic)
+        // Choice of the pivot can impact the time complexity
+        // In-place algorithm
+        // Unstable
+
+        if (end - start < 2){
+            return intArray;
+        }
+
+        int pivotIndex = partition(intArray, start, end);
+
+        return intArray;
+    }
+    private static int partition(int[] intArray, int start, int end){
+
+        int i = start;
+        int j = end;
+        int pivot = intArray[start];
+
+        while (i < j){
+
+
+            while (i < j && intArray[--j] >= pivot);
+            if (
+
+
+        }
+    }
+
+
 
     // Merge Sort
     private static int[] mergeSort(int[] intArray, int start, int end){
+        // O(nLog n)
+        // Stable
+        // Requires additional memory for temp arrays
+
+
         // start - beginning of array
         // end - length of array (end - 1 = last index of array)
 
