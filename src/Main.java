@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        int[] countArray = {2, 5, 9, 8, 2, 8, 7, 10, 4, 3}; // used only for Counting Sort
+        int[] countArray = {2, 5, 9, 8, 2, 8, 7, 10, 4, 3}; // Array for Counting Sort implementation
         int[] intArray = {20, 35, -15, 7, 55, 1, -22}; // length: 7
 
         System.out.println(Arrays.toString(countingSort(countArray, 1, 10)));
@@ -28,13 +28,14 @@ public class Main {
         for (int i = 0; i < intArray.length; i++) {
             countArray[intArray[i] - min]++;
         }
-
         int j = 0; // Traverse through the input array
+
+        // Update and sort the input array
         for (int i = min; i <= max; i++) {
             int countArrayIndex = i - min;
             while (countArray[countArrayIndex] > 0){
-                intArray[j++] = i;
-                countArray[countArrayIndex]--; // decrement the countArray value each time it has been added to the input array
+                intArray[j++] = i; // Update index value to i and increment J (move to the next index of input array)
+                countArray[countArrayIndex]--; // Decrement value each time i has been added to an index
             }
         }
 
