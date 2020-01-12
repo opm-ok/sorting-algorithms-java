@@ -21,28 +21,44 @@ public class Main {
         // In-place algorithm
         // Unstable
 
+        // BASE CASE
         if (end - start < 2){
             return intArray;
         }
 
         int pivotIndex = partition(intArray, start, end);
+        quickSort(intArray, start, pivotIndex);
+        quickSort(intArray, pivotIndex + 1, end);
 
         return intArray;
     }
     private static int partition(int[] intArray, int start, int end){
 
-        int i = start;
-        int j = end;
+        // This is using the first element as the pivot
         int pivot = intArray[start];
+
+        int i = start; // find elements that are greater than the pivot
+        int j = end; // find elements less than the pivot
 
         while (i < j){
 
-
+            // Empty loop body
             while (i < j && intArray[--j] >= pivot);
-            if (
+            
+            if (i < j){
+                intArray[i] = intArray[j];
+            }
 
+            // Empty loop body
+            while (i < j && intArray[++i] <= pivot);
 
+            if (i < j){
+                intArray[j] = intArray[i];
+            }
         }
+        intArray[i] = pivot;
+
+        return j; // return position of pivot
     }
 
 
