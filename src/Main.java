@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] intArray = {20, 35, -15, 7, 55, 1, -22}; // indexes: 6
+        int[] intArray = {20, 35, -15, 7, 55, 1, -22}; // length: 7
 
         System.out.println(Arrays.toString(quickSort(intArray, 0, intArray.length)));
         System.out.println(Arrays.toString(mergeSort(intArray, 0, intArray.length)));
@@ -25,7 +25,6 @@ public class Main {
         if (end - start < 2){
             return intArray;
         }
-
         int pivotIndex = partition(intArray, start, end);
         quickSort(intArray, start, pivotIndex);
         quickSort(intArray, pivotIndex + 1, end);
@@ -44,7 +43,7 @@ public class Main {
 
             // Empty loop body
             while (i < j && intArray[--j] >= pivot);
-            
+
             if (i < j){
                 intArray[i] = intArray[j];
             }
@@ -56,12 +55,10 @@ public class Main {
                 intArray[j] = intArray[i];
             }
         }
-        intArray[i] = pivot;
 
+        intArray[j] = pivot; // Pivot value is placed at the correct index
         return j; // return position of pivot
     }
-
-
 
     // Merge Sort
     private static int[] mergeSort(int[] intArray, int start, int end){
@@ -69,11 +66,10 @@ public class Main {
         // Stable
         // Requires additional memory for temp arrays
 
-
         // start - beginning of array
         // end - length of array (end - 1 = last index of array)
 
-        // base case
+        // BASE CASE
         if (end - start < 2){
             return intArray;
         }
@@ -87,11 +83,11 @@ public class Main {
 
         return intArray;
     }
-    private static int[] merge(int[] intArray, int start, int mid, int end){
+    private static void merge(int[] intArray, int start, int mid, int end){
 
         // Do nothing if the value at the start of the right array is larger than the value at end of left array
         if (intArray[mid - 1] <= intArray[mid]){
-            return intArray;
+            return;
         }
 
         int i = start;
@@ -113,7 +109,6 @@ public class Main {
 
         // Copy over the tempArray to intArray
         System.arraycopy(tempArray, 0, intArray, start, tempIndex);
-        return intArray;
     }
 
     // Shell Sort
