@@ -3,15 +3,42 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-
+        int[] countArray = {2, 5, 9, 8, 2, 8, 7, 10, 4, 3}; // used only for Counting Sort
         int[] intArray = {20, 35, -15, 7, 55, 1, -22}; // length: 7
 
+        System.out.println(Arrays.toString(countingSort(countArray, 1, 10)));
         System.out.println(Arrays.toString(quickSort(intArray, 0, intArray.length)));
         System.out.println(Arrays.toString(mergeSort(intArray, 0, intArray.length)));
         System.out.println(Arrays.toString(shellSort(intArray)));
         System.out.println(Arrays.toString(insertionSort(intArray)));
         System.out.println(Arrays.toString(selectionSort(intArray)));
         System.out.println(Arrays.toString(bubbleSort(intArray)));
+    }
+    // Counting Sort
+    private static int[] countingSort(int[] intArray, int min, int max){
+        // Works best when the range of the data is similar to the size of the array. Discrete and non-negative numbers
+        // Not an In-place algorithm
+        // O(n)
+        // Can be stable with certain adjustments to the implementation
+        // Algorithm requires assumptions to be made
+
+        int[] countArray = new int[max - min + 1];
+
+        // Traverse through the input array and increment value of the appropriate index
+        for (int i = 0; i < intArray.length; i++) {
+            countArray[intArray[i] - min]++;
+        }
+
+        int j = 0; // Traverse through the input array
+        for (int i = min; i <= max; i++) {
+            int countArrayIndex = i - min;
+            while (countArray[countArrayIndex] > 0){
+                intArray[j++] = i;
+                countArray[countArrayIndex]--; // decrement the countArray value each time it has been added to the input array
+            }
+        }
+
+        return intArray;
     }
 
     // Quick Sort
